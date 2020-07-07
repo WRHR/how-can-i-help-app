@@ -54,3 +54,46 @@ nav{
     justify-content: space-between;
     padding: 1rem;
 }
+
+.login-card{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: grey;
+    padding: 3rem;
+    border-radius: 2rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    cursor: pointer;
+}
+
+.hide-button{  
+    position: relative;
+    left: -48px;
+    top: -170px;
+    border-radius: 100%;
+    padding: 2px 5px; 
+    background-color: black;
+    border: none;
+    color: white;
+}
+
+#login-form > input{
+    margin: 5px;
+}
+
+#login-form > button{
+    margin: 5px;
+}
+
+.hidden{ 
+    display: none;
+}
