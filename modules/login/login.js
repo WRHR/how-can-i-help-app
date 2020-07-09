@@ -1,14 +1,16 @@
-import {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError} from '../app.js'
+import {parseJSON, displayError, checkForError} from '../app.js'
 
 const baseURL = 'http://localhost:3000'
 const loginURL = `${baseURL}/login`
 
 const hiddenDiv = document.querySelector('.login-card')
+const errorMessage = document.querySelector('#error-message')
 
 function createLoginForm(){
     if(hiddenDiv.childNodes.length > 3){
         hiddenDiv.removeChild(hiddenDiv.lastChild)
     }
+    errorMessage.textContent = ''
     const loginForm = document.createElement('form')
     loginForm.id = 'login-form'
     loginForm.innerHTML = `
@@ -16,7 +18,7 @@ function createLoginForm(){
                 <input type="password" name="password" placeholder="Enter Password">
                 <input id="login-submit" type="submit" value="Login">
             `
-    hiddenDiv.append(loginForm)
+    hiddenDiv.append(errorMessage,loginForm)
     loginForm.addEventListener('submit', login)
 }
 

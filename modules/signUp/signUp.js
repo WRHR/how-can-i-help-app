@@ -4,11 +4,13 @@ const baseURL = 'http://localhost:3000'
 const userURL = `${baseURL}/users`
 
 const hiddenDiv = document.querySelector('.login-card')
+const errorMessage = document.querySelector('#error-message')
 
 function createSignUpForm(){
     if(hiddenDiv.childNodes.length > 3){
         hiddenDiv.removeChild(hiddenDiv.lastChild)
     }
+    errorMessage.textContent = ''
     const loginForm = document.createElement('form')
     loginForm.id = 'sign-up-form'
     loginForm.innerHTML = `
@@ -17,7 +19,7 @@ function createSignUpForm(){
                 <input type="password" name="password" placeholder="Enter Password">
                 <input id="sign-in-submit" type="submit" value="Register Account">
             `
-    hiddenDiv.append(loginForm)
+    hiddenDiv.append(errorMessage,loginForm)
     loginForm.addEventListener('submit', signUp)
 }
 
@@ -29,7 +31,7 @@ function signUp(){
     const name = formData.get('name')
     const username = formData.get('username')
     const password =  formData.get('password')
-    const userInfo = { name, username, password }
+    const userInfo = { 'user':{name, username, password }}
 
     fetch(userURL, {
         method: 'POST',
