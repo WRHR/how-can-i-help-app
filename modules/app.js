@@ -20,9 +20,12 @@ loginButton.addEventListener('click', ()=>{
     loginAction.createLoginForm()
 })
 
+logoutButton.addEventListener('click', logout)
+
 hideButton.addEventListener('click', ()=>{
     addHiddenClassAndRemoveChild(event.target.parentNode)
 })
+
 
 function displayLoginForm(){
     const loginCard = document.querySelector('.login-card')
@@ -53,6 +56,11 @@ function hideLogin(){
 
 function hideLogout(){
     addHiddenClass(logoutButton)
+}
+
+function logout(){
+    localStorage.removeItem('token')
+    window.location.reload()
 }
 
 function displayError(error){
