@@ -76,9 +76,9 @@ button{
 }
 
 .hide-button{  
-    position: relative;
+    /* position: relative;
     left: -48px;
-    top: -170px;
+    top: -170px; */
     border-radius: 100%;
     padding: 2px 5px; 
     background-color: black;
