@@ -2,20 +2,26 @@ import * as loginAction from './login/login.js'
 
 const baseURL = 'http://localhost:3000'
 const userURL = `${baseURL}/users`
-
 const tasksURL = `${baseURL}/tasks`
 const volunteersURL = `${baseURL}/volunteers`
 
-const displayLoginButton = document.querySelector('.login')
+const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
+
+const loginButton = document.querySelector('.login')
+const logoutButton = document.querySelector('.logout')
+const signUpButton = document.querySelector('.sign-up')
 const hideButton = document.querySelector('.hide-button')
 
-displayLoginButton.addEventListener('click', ()=>{
+
+token ? hideLogin() : hideLogout()
+
+loginButton.addEventListener('click', ()=>{
     displayLoginForm()
     loginAction.createLoginForm()
 })
 
 hideButton.addEventListener('click', ()=>{
-    addHiddenClass(event.target.parentNode)
+    addHiddenClassAndRemoveChild(event.target.parentNode)
 })
 
 function displayLoginForm(){
@@ -23,8 +29,8 @@ function displayLoginForm(){
     loginCard.classList.remove('hidden')
 }
 
-function addHiddenClass(node){
-    node.classList.add('hidden')
+function addHiddenClassAndRemoveChild(node){
+    addHiddenClass(node)
     removeInnerHTML(node)
 }
 
@@ -36,5 +42,24 @@ function parseJSON(response){
     return response.json()
 }
 
-export {parseJSON, addHiddenClass}
+function addHiddenClass(node){
+    node.classList.add('hidden')
+}
+
+function hideLogin(){
+    addHiddenClass(loginButton)
+    addHiddenClass(signUpButton)
+}
+
+function hideLogout(){
+    addHiddenClass(logoutButton)
+}
+
+function displayError(error){
+    const errorMessage = document.querySelector('#error-message')
+    errorMessage.textContent = error
+}
+
+
+export {parseJSON, addHiddenClassAndRemoveChild, displayError}
 

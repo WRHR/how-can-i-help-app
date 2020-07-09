@@ -1,17 +1,21 @@
-import {parseJSON, addHiddenClass} from '../app.js'
+import {parseJSON, addHiddenClassAndRemoveChild, displayError} from '../app.js'
 
 const baseURL = 'http://localhost:3000'
 const loginURL = `${baseURL}/login`
+
 const hiddenDiv = document.querySelector('.login-card')
 
 function createLoginForm(){
+    if(hiddenDiv.childNodes.length > 3){
+        hiddenDiv.removeChild(hiddenDiv.lastChild)
+    }
     const loginForm = document.createElement('form')
     loginForm.id = 'login-form'
     loginForm.innerHTML = `
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password">
                 <input id="login-submit" type="submit" value="Login">
-                <p id="error-message"></p>
+                
             `
     hiddenDiv.append(loginForm)
     loginForm.addEventListener('submit', login)
@@ -33,13 +37,31 @@ function login(event){
         },
         body: JSON.stringify(userInfo)
     })
+        .then(checkForError)
         .then(parseJSON)
         .then(setToken)
-        .then(addHiddenClass(hiddenDiv))
+        .then(reload)
+        .catch(displayError)
+        
+        
+}
+
+function checkForError(response){
+    return !response.ok 
+        ? response.json().then(({error}) => {
+            throw new Error(error)
+        })
+        :response
 }
 
 function setToken({token}){
     localStorage.setItem("token", token)
+}
+
+function reload(){
+    if(localStorage.getItem("token")) {
+        window.location.reload()
+    }
 }
 
 export {createLoginForm}
