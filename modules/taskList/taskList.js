@@ -42,6 +42,7 @@ function showTaskDetails(taskData){
     if(taskCard.childNodes.length > 3){
         taskCard.removeChild(taskCard.lastChild)
     }
+    errorMessage.textContent = ''
     const taskInfo = document.createElement('div')
     taskInfo.innerHTML = `
         <h2>${taskData.data.attributes.title}</h2>
@@ -55,7 +56,7 @@ function showTaskDetails(taskData){
         offerHelp(event, taskData.data.id)
     })
 
-    taskCard.append(taskInfo)
+    taskCard.append(errorMessage,taskInfo)
     displayTaskCard()
 }
 
