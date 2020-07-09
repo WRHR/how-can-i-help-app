@@ -104,6 +104,13 @@ button{
 #login-form > button{
     margin: 5px;
 }
+#sign-up-form > input{
+    margin: 5px;
+}
+
+#sign-up-form > button{
+    margin: 5px;
+}
 
 section{
 

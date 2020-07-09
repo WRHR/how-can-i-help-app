@@ -1,10 +1,11 @@
-import {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError} from '../app.js'
+import {parseJSON, checkForError} from '../app.js'
 
 const baseURL = 'http://localhost:3000'
 const tasksURL = `${baseURL}/tasks`
+const volunteersURL = `${baseURL}/volunteers`
 
 const taskCard = document.querySelector('.task-card')
-
+const errorMessage = document.querySelector('#task-error-message')
 function createTaskList({data}){
     return data.map(createTask)
 }
@@ -14,7 +15,7 @@ function displayTasks(tasks){
 }
 
 function createTask(task){
-    // console.log(task)
+
     const li = document.createElement('li')
     li.dataset.taskId = task.id
     li.innerHTML = `
@@ -28,14 +29,16 @@ function createTask(task){
 }
 
 function getTaskDetails(event){
- let task_id = event.target.parentNode.dataset.taskId
- fetch(tasksURL+`/${task_id}`)
-    .then(parseJSON)
-    .then(showTaskDetails)
+    event.stopPropagation()
+    let task_id = event.target.parentNode.dataset.taskId
+
+    fetch(tasksURL+`/${task_id}`)
+        .then(parseJSON)
+        .then(showTaskDetails)
 }
 
 function showTaskDetails(taskData){
-    console.log(taskData)
+
     if(taskCard.childNodes.length > 3){
         taskCard.removeChild(taskCard.lastChild)
     }
@@ -45,6 +48,12 @@ function showTaskDetails(taskData){
         <p>${taskData.data.attributes.description}</p>
         <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
     `
+    const volunteerButton = document.createElement('button')
+    volunteerButton.innerText = `Help ${taskData.data.attributes.creator.data.attributes.name}`
+    taskInfo.append(volunteerButton)
+    volunteerButton.addEventListener('click', (event)=>{
+        offerHelp(event, taskData.data.id)
+    })
 
     taskCard.append(taskInfo)
     displayTaskCard()
@@ -52,6 +61,34 @@ function showTaskDetails(taskData){
 
 function displayTaskCard(){
     taskCard.classList.remove('hidden')
+}
+const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
+
+function offerHelp(event, task_id){
+    event.stopPropagation()
+    fetch(volunteersURL, {
+        method: 'POST',
+        headers:{
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            task_id
+        })
+    })
+    .then(checkForError)
+    .then(parseJSON)
+    .then(displayHelpMessage)
+    .catch(displayTaskError)
+}
+
+function displayHelpMessage(response){
+    errorMessage.style = 'color: green'
+    errorMessage.textContent = response.message
+}
+
+function displayTaskError(error){
+    errorMessage.textContent = error
 }
 
 export {createTaskList}

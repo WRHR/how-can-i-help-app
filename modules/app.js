@@ -5,7 +5,7 @@ import * as taskListAction from './taskList/taskList.js'
 const baseURL = 'http://localhost:3000'
 const userURL = `${baseURL}/users`
 const tasksURL = `${baseURL}/tasks`
-const volunteersURL = `${baseURL}/volunteers`
+
 
 
 const loginButton = document.querySelector('.login')
