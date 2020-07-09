@@ -65,6 +65,16 @@ nav{
     padding: 3rem;
     border-radius: 2rem;
 }
+.task-card{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background-color: grey;
+    padding: 3rem;
+    border-radius: 2rem;
+}
 
 form{
     display: flex;
@@ -76,9 +86,10 @@ button{
 }
 
 .hide-button{  
-    /* position: relative;
-    left: -48px;
-    top: -170px; */
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    left: 10px;
     border-radius: 100%;
     padding: 2px 5px; 
     background-color: black;

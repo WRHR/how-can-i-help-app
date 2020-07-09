@@ -11,7 +11,7 @@ const volunteersURL = `${baseURL}/volunteers`
 const loginButton = document.querySelector('.login')
 const logoutButton = document.querySelector('.logout')
 const signUpButton = document.querySelector('.sign-up')
-const hideButton = document.querySelector('.hide-button')
+const hideButton = document.querySelectorAll('.hide-button')
 const taskUL = document.querySelector('.task-list')
 
 const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
@@ -41,9 +41,9 @@ signUpButton.addEventListener('click', ()=> {
 
 logoutButton.addEventListener('click', logout)
 
-hideButton.addEventListener('click', ()=>{
+hideButton.forEach(button => button.addEventListener('click', ()=>{
     addHiddenClassAndRemoveChild(event.target.parentNode)
-})
+}))
 
 
 function displayLoginForm(){
