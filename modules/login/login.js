@@ -44,9 +44,11 @@ function login(event){
 }
 
 
-function setToken({token}){
+function setToken({token, user_id}){
     localStorage.setItem("token", token)
+    localStorage.setItem("id",user_id)
 }
+
 
 function reload(){
     if(localStorage.getItem("token")) {

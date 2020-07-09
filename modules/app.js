@@ -1,18 +1,31 @@
 import * as loginAction from './login/login.js' 
 import * as signUpAction from './signUp/signUp.js' 
+import * as taskListAction from './taskList/taskList.js'
 
 const baseURL = 'http://localhost:3000'
 const userURL = `${baseURL}/users`
 const tasksURL = `${baseURL}/tasks`
 const volunteersURL = `${baseURL}/volunteers`
 
-const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
 
 const loginButton = document.querySelector('.login')
 const logoutButton = document.querySelector('.logout')
 const signUpButton = document.querySelector('.sign-up')
 const hideButton = document.querySelector('.hide-button')
+const taskUL = document.querySelector('.task-list')
 
+const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
+
+const options = {
+    headers: {
+        "Authorization": token
+    }
+}
+
+fetch(tasksURL)
+    .then(parseJSON)
+    .then(taskListAction.createTaskList)
+    .then(displayTasks)
 
 token ? hideLogin() : hideLogout()
 
@@ -24,11 +37,9 @@ loginButton.addEventListener('click', ()=>{
 signUpButton.addEventListener('click', ()=> {
     displayLoginForm()
     signUpAction.createSignUpForm()
-
 })
 
 logoutButton.addEventListener('click', logout)
-
 
 hideButton.addEventListener('click', ()=>{
     addHiddenClassAndRemoveChild(event.target.parentNode)
@@ -82,6 +93,10 @@ function checkForError(response){
             throw new Error(error)
         })
         :response
+}
+
+function displayTasks(tasks){
+    return tasks.forEach(task => taskUL.append(task))
 }
 
 
