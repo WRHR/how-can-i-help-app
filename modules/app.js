@@ -1,4 +1,5 @@
 import * as loginAction from './login/login.js' 
+import * as signUpAction from './signUp/signUp.js' 
 
 const baseURL = 'http://localhost:3000'
 const userURL = `${baseURL}/users`
@@ -20,7 +21,14 @@ loginButton.addEventListener('click', ()=>{
     loginAction.createLoginForm()
 })
 
+signUpButton.addEventListener('click', ()=> {
+    displayLoginForm()
+    signUpAction.createSignUpForm()
+
+})
+
 logoutButton.addEventListener('click', logout)
+
 
 hideButton.addEventListener('click', ()=>{
     addHiddenClassAndRemoveChild(event.target.parentNode)
@@ -68,6 +76,14 @@ function displayError(error){
     errorMessage.textContent = error
 }
 
+function checkForError(response){
+    return !response.ok 
+        ? response.json().then(({error}) => {
+            throw new Error(error)
+        })
+        :response
+}
 
-export {parseJSON, addHiddenClassAndRemoveChild, displayError}
+
+export {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError}
 

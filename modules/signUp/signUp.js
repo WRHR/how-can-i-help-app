@@ -1,35 +1,37 @@
-import {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError} from '../app.js'
+import {parseJSON, displayError, checkForError} from '../app.js'
 
 const baseURL = 'http://localhost:3000'
-const loginURL = `${baseURL}/login`
+const userURL = `${baseURL}/users`
 
 const hiddenDiv = document.querySelector('.login-card')
 
-function createLoginForm(){
+function createSignUpForm(){
     if(hiddenDiv.childNodes.length > 3){
         hiddenDiv.removeChild(hiddenDiv.lastChild)
     }
     const loginForm = document.createElement('form')
-    loginForm.id = 'login-form'
+    loginForm.id = 'sign-up-form'
     loginForm.innerHTML = `
+                <input type="text" name="name" placeholder="Enter Your Name">
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password">
-                <input id="login-submit" type="submit" value="Login">
+                <input id="sign-in-submit" type="submit" value="Register Account">
             `
     hiddenDiv.append(loginForm)
-    loginForm.addEventListener('submit', login)
+    loginForm.addEventListener('submit', signUp)
 }
 
-function login(event){
+function signUp(){
     event.preventDefault()
-    const loginForm = document.querySelector('#login-form')
+    const loginForm = document.querySelector('#sign-up-form')
 
     const formData = new FormData(loginForm)
+    const name = formData.get('name')
     const username = formData.get('username')
     const password =  formData.get('password')
-    const userInfo = { username, password }
+    const userInfo = { name, username, password }
 
-    fetch(loginURL, {
+    fetch(userURL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,20 +40,16 @@ function login(event){
     })
         .then(checkForError)
         .then(parseJSON)
-        .then(setToken)
-        .then(reload)
-        .catch(displayError)      
+        .then(displyCreateMessage)
+        .catch(displayError)  
+
+    event.target.reset()
 }
 
-
-function setToken({token}){
-    localStorage.setItem("token", token)
+function displyCreateMessage(json){
+    const message = document.querySelector('#error-message')
+    message.style = "color: green"
+    message.textContent = json.message
 }
 
-function reload(){
-    if(localStorage.getItem("token")) {
-        window.location.reload()
-    }
-}
-
-export {createLoginForm}
+export {createSignUpForm}
