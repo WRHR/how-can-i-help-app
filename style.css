@@ -94,6 +94,27 @@ button{
     margin: 5px;
 }
 
+section{
+
+}
+
+.task-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+li{
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+li:hover{
+    cursor: pointer;
+    box-shadow: 5px 5px 5px black;
+}
+
 .hidden{ 
     display: none;
 }

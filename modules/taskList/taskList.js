@@ -12,11 +12,17 @@ function createTask(task){
     const li = document.createElement('li')
     li.dataset.taskId = task.id
     li.innerHTML = `
-        <h2 class='task-title'>${task.attributes.title}</h2>
         <h4>${task.attributes.creator.data.attributes.name} needs help:</h4>
-        <p>${task.attributes.description}</p>
+        <h3>${task.attributes.title}</h3>
+        <p>Needs ${task.attributes.volunteersNeeded - task.attributes.helpers.length} more people to help!</p>
     `
+
+    li.addEventListener('click', showDetails)
     return li
+}
+
+function showDetails(){
+
 }
 
 export {createTaskList}

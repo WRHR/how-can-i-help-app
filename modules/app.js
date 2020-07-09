@@ -79,6 +79,7 @@ function hideLogout(){
 
 function logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     window.location.reload()
 }
 
