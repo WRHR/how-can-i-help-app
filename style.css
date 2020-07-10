@@ -127,7 +127,7 @@ main{
     transform: translate(-50%, -50%);
     z-index: 2;
     background-color: grey;
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 2rem;
 }
 
@@ -137,12 +137,35 @@ main{
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    background-color: var(--grey-color);
+    
     padding: 2rem;
     border-radius: 2rem;
+    background-image: url('./images/happy-cloud.png');
+    background-size: cover;
+    height: 235px;
+    display: flex;
+    justify-content: center;
+
 }
 
+.task-card > .hide-button{
+    top: 84px;
+    left: 79px;
+}
 
+.task-card > div {
+    position: relative;
+    top: 5%;
+    height: 14em;
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-around;
+    background-color: white;
+    border-radius: 100%;
+
+}
 .new-task-form{
     position: absolute;
     left: 50%;

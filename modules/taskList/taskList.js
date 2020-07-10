@@ -53,7 +53,7 @@ function showTaskDetails(taskData){
     const helpersNeeded = calculateVolunteers(taskData.data)
     console.log(taskData)
     taskInfo.innerHTML = `
-        <p>${taskData.data.attributes.creator.data.attributes.name} ${helpersNeeded}</p>
+        <p>${helpersNeeded}</p>
         <h3>${taskData.data.attributes.title}</h3>
         <p>${taskData.data.attributes.description}</p>
         <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
@@ -91,7 +91,7 @@ function offerHelp(event, task_id){
     })
     .then(checkForError)
     .then(parseJSON)
-    .then(displayHelpMessage)
+    .then(window.location.reload())
     .catch(displayTaskError)
 
 }
@@ -110,7 +110,7 @@ function stopHelp(event, taskData){
     })
     .then(checkForError)
     .then(parseJSON)
-    .then(displayHelpMessage)
+    .then(window.location.reload())
     .catch(displayTaskError)
 }
 
