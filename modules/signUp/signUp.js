@@ -11,6 +11,7 @@ function createSignUpForm(){
         hiddenDiv.removeChild(hiddenDiv.lastChild)
     }
     errorMessage.textContent = ''
+    errorMessage.style = ''
     const loginForm = document.createElement('form')
     loginForm.id = 'sign-up-form'
     loginForm.innerHTML = `

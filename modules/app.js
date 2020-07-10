@@ -1,9 +1,9 @@
 import * as loginAction from './login/login.js' 
 import * as signUpAction from './signUp/signUp.js' 
 import * as taskListAction from './taskList/taskList.js'
+import * as taskAddAction from './addTask/addTask.js'
 
 const baseURL = 'http://localhost:3000'
-const userURL = `${baseURL}/users`
 const tasksURL = `${baseURL}/tasks`
 
 
@@ -13,6 +13,7 @@ const logoutButton = document.querySelector('.logout')
 const signUpButton = document.querySelector('.sign-up')
 const hideButton = document.querySelectorAll('.hide-button')
 const taskUL = document.querySelector('.task-list')
+const addTaskButton = document.querySelector('.add-task-button')
 
 const token = localStorage.getItem("token") ? `bearer ${localStorage.getItem('token')}` : null
 
@@ -45,10 +46,19 @@ hideButton.forEach(button => button.addEventListener('click', ()=>{
     addHiddenClassAndRemoveChild(event.target.parentNode)
 }))
 
+addTaskButton.addEventListener('click', ()=>{
+    displayTaskForm()
+    taskAddAction.createTaskForm()
+})
+
 
 function displayLoginForm(){
     const loginCard = document.querySelector('.login-card')
     loginCard.classList.remove('hidden')
+}
+function displayTaskForm(){
+    const newTaskCard = document.querySelector('.new-task-form')
+    newTaskCard.classList.remove('hidden')
 }
 
 function addHiddenClassAndRemoveChild(node){
@@ -68,9 +78,14 @@ function addHiddenClass(node){
     node.classList.add('hidden')
 }
 
+function removeHiddenClass(node){
+    node.classList.remove('hidden')
+}
+
 function hideLogin(){
     addHiddenClass(loginButton)
     addHiddenClass(signUpButton)
+    removeHiddenClass(addTaskButton)
 }
 
 function hideLogout(){
@@ -85,6 +100,7 @@ function logout(){
 
 function displayError(error){
     const errorMessage = document.querySelector('#error-message')
+    errorMessage.style = 'color: red'
     errorMessage.textContent = error
 }
 
