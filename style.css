@@ -116,8 +116,8 @@ nav{
 main{
     display: flex;
     justify-content: center;
-    height: 43rem;
-    max-height: 80%;
+    height: 100%;
+    max-height: 100%;
     overflow: auto;
 }
 
@@ -244,7 +244,16 @@ li:hover{
     box-shadow: 5px 5px 5px black;
 }
 
+.add-task-button{
+    position: absolute;
+    z-index: 2;
+    top: 13%;
+    left: 2%;
+    padding: 8px 12px;
+}
+
 .hidden{ 
     display: none;
 }
+
 
