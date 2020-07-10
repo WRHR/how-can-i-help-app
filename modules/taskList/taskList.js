@@ -1,4 +1,5 @@
 import {parseJSON, checkForError} from '../app.js'
+import {createEditForm} from '../editTask/editTask.js'
 
 const baseURL = 'http://localhost:3000'
 const tasksURL = `${baseURL}/tasks`
@@ -50,9 +51,14 @@ function showTaskDetails(taskData){
         <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
     `
 
-    const volunteerButton = pickVolunteerButton(taskData)
-    // volunteerButton.innerText = `Help ${taskData.data.attributes.creator.data.attributes.name}`
-    taskInfo.append(volunteerButton)
+    if(localStorage.getItem('id') == taskData.data.attributes.creator.data.id){
+        const editButton = createEditButton(taskData)
+        taskInfo.append(editButton)
+    }else{
+        const volunteerButton = pickVolunteerButton(taskData)      
+        taskInfo.append(volunteerButton)
+    }
+
 
     taskCard.append(errorMessage,taskInfo)
     displayTaskCard()
@@ -130,6 +136,15 @@ function makeUnhelpButton(taskData){
         stopHelp(event, taskData)
     })
     return unhelpButton
+}
+
+function createEditButton(taskData){
+    const editButton = document.createElement('button')
+    editButton.innerText = 'Edit Help Request'
+    editButton.addEventListener('click', ()=>{
+        createEditForm(taskData)
+    } )
+    return editButton
 }
 
 export {createTaskList}

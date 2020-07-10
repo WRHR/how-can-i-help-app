@@ -117,5 +117,5 @@ function displayTasks(tasks){
 }
 
 
-export {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError}
+export {parseJSON, addHiddenClassAndRemoveChild, displayError, checkForError,removeHiddenClass, addHiddenClass}
 
