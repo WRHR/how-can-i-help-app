@@ -113,6 +113,7 @@ function checkForError(response){
 }
 
 function displayTasks(tasks){
+
     return tasks.forEach(task => taskUL.append(task))
 }
 

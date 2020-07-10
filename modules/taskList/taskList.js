@@ -8,10 +8,13 @@ const volunteersURL = `${baseURL}/volunteers/`
 const taskCard = document.querySelector('.task-card')
 const errorMessage = document.querySelector('#task-error-message')
 function createTaskList({data}){
-    return data.map(createTask)
+    console.log(data)
+    const filteredData = data.filter(dataNode => dataNode.attributes.volunteersNeeded != dataNode.attributes.helpers.length)
+    return filteredData.map(createTask)
 }
 
 function displayTasks(tasks){
+    
     return tasks.forEach(task => taskList.append(task))
 }
 
