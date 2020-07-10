@@ -57,9 +57,15 @@ table {
     --cabin-font:'Cabin', sans-serif;
     --modak-font:'Modak', cursive;
     --acme-font: 'Acme', sans-serif;
+    --dark-color: hsl(120, 4%, 16%);
+    --grey-color: hsl(196, 19%, 64%);
+    --skyblue-color: hsl(211, 86%, 78%);
+    --light-blue-color: hsl(211, 100%, 83%);
+    --white-color: hsl(231, 100%, 97%);
 }
 body{
-    font-family: var(--cabin-font)
+    font-family: var(--cabin-font);
+    background: linear-gradient(var(--skyblue-color), var(--white-color));
 }
 h2{
     font-size: 3rem;
@@ -81,8 +87,8 @@ nav{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
-    background-color: black;
-    color: white;
+    background-color: var(--dark-color);
+    color: var(--white-color);
 }
 
 main{
@@ -179,18 +185,18 @@ li{
     /* padding: 0 1rem 1rem; */
     margin: 1rem;
     width: 13rem;
-    border: 3px solid black;
+    border: 3px solid var(--dark-color);
     border-radius: 1rem;
-
+    background-color: var(--white-color);
 
 }
 
 li > h4{
-    background-color: black;
+    background-color: var(--dark-color);
     color: white;
     text-align: center;
     border-radius: 0.5rem 1rem 0rem 0rem;
-    border-right: 60px solid black;
+    border-right: 60px solid var(--dark-color);
     margin-bottom: 5px;
     padding:5px;
 }
@@ -201,9 +207,12 @@ li > h3{
 } 
 
 li > p{
+    background-color: var(--dark-color);
     text-align: center;
     font-size: 14px;
-    margin-bottom: 5px;
+    padding:5px;
+    color: white;
+    border-radius: 0rem 0rem 0.5rem 1rem;
 }
 
 li:hover{
