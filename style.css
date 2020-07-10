@@ -170,6 +170,9 @@ main{
 .task-card > div > h3{
     text-align: center;
 }
+.task-card > div > p{
+    margin: 3px;
+}
 .new-task-form{
     position: absolute;
     left: 50%;
