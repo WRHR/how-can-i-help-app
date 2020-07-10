@@ -17,6 +17,7 @@ function createTaskForm(){
     errorMessage.style = ''
     taskForm.id = 'task-form'
     taskForm.innerHTML = `
+                <h2>New Help Request</h2>
                 <input type="text" name="title" placeholder="What do you need help with?">
                 <input type="textarea" name="description" placeholder="Enter a description of what you need help with">
                 <input type="number" name="volunteersNeeded" placeholder="Enter number of volunteers needed">

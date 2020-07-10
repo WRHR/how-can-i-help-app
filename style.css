@@ -92,6 +92,7 @@ body{
 h2{
     font-size: 3rem;
     font-family: var(--modak-font);
+    color: var(--white-color);
     -webkit-text-stroke: 0.3px black;
 }
 
@@ -164,7 +165,10 @@ main{
     align-items: space-around;
     background-color: white;
     border-radius: 100%;
+}
 
+.task-card > div > h3{
+    text-align: center;
 }
 .new-task-form{
     position: absolute;

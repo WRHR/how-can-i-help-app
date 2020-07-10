@@ -19,6 +19,7 @@ function createEditForm(taskData){
     taskForm.id = 'task-form'
     console.log(taskData.data.attributes.volunteersNeeded)
     taskForm.innerHTML = `
+                <h2>Edit Help Request</h2>
                 <input type="text" name="title" value="${taskData.data.attributes.title}">
                 <input type="textarea" name="description" value="${taskData.data.attributes.description}" >
                 <input type="number" name="volunteersNeeded" value="${taskData.data.attributes.volunteersNeeded}">

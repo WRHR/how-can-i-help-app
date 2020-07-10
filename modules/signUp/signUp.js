@@ -15,6 +15,7 @@ function createSignUpForm(){
     const loginForm = document.createElement('form')
     loginForm.id = 'sign-up-form'
     loginForm.innerHTML = `
+                <h2>Register New User</h2>
                 <input type="text" name="name" placeholder="Enter Your Name">
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password">

@@ -53,10 +53,10 @@ function showTaskDetails(taskData){
     const helpersNeeded = calculateVolunteers(taskData.data)
     console.log(taskData)
     taskInfo.innerHTML = `
-        <p>${helpersNeeded}</p>
-        <h3>${taskData.data.attributes.title}</h3>
-        <p>${taskData.data.attributes.description}</p>
-        <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
+    <h3>${taskData.data.attributes.title}</h3>
+    <p>${taskData.data.attributes.description}</p>
+    <p>Total Needed: ${taskData.data.attributes.volunteersNeeded}</p>
+    <p>${helpersNeeded}</p>
     `
 
     if(localStorage.getItem('id') == taskData.data.attributes.creator.data.id){

@@ -15,6 +15,7 @@ function createLoginForm(){
     const loginForm = document.createElement('form')
     loginForm.id = 'login-form'
     loginForm.innerHTML = `
+                <h2>Login</h2>
                 <input type="text" name="username" placeholder="Enter Username">
                 <input type="password" name="password" placeholder="Enter Password">
                 <input id="login-submit" type="submit" value="Login">
