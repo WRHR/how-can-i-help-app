@@ -1,5 +1,6 @@
 import {parseJSON, displayError, checkForError} from '../app.js'
 
+
 const baseURL = 'http://localhost:3000'
 const tasksURL = `${baseURL}/tasks`
 
@@ -47,9 +48,14 @@ function addTask(){
     })
         .then(checkForError)
         .then(parseJSON)
+        .then(window.location.reload())
         .catch(displayError)  
 
-    event.target.reset()
+    
+
+    
 }
+
+
 
 export {createTaskForm}

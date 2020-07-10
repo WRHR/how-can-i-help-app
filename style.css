@@ -29,7 +29,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
+    
 }
 ol, ul {
 	list-style: none;
@@ -48,11 +49,47 @@ table {
 }
 
 /* END RESET */
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Modak&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+/* font-family: 'Cabin', sans-serif; */
+/* font-family: 'Modak', cursive; */
+:root{
+    --cabin-font:'Cabin', sans-serif;
+    --modak-font:'Modak', cursive;
+    --acme-font: 'Acme', sans-serif;
+}
+body{
+    font-family: var(--cabin-font)
+}
+h2{
+    font-size: 3rem;
+    font-family: var(--modak-font);
+}
+
+h3{
+    font-size: 1.5rem;
+    font-family: var(--acme-font);
+}
+
+h4{
+    font-family: var(--acme-font);
+    font-size: 1rem;
+}
 
 nav{
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+    background-color: black;
+    color: white;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    height: 43rem;
+    max-height: 80%;
+    overflow: auto;
 }
 
 .login-card{
@@ -76,6 +113,7 @@ nav{
     padding: 3rem;
     border-radius: 2rem;
 }
+
 .new-task-form{
     position: absolute;
     left: 50%;
@@ -94,6 +132,9 @@ form{
 
 button{
     cursor: pointer;
+    border: none;
+    border-radius: 1rem;
+    padding:10px;
 }
 
 .hide-button{  
@@ -107,24 +148,21 @@ button{
     border: none;
     color: white;
 }
-
-#login-form > input{
+input{
     margin: 5px;
 }
 
-#login-form > button{
-    margin: 5px;
-}
-#sign-up-form > input{
+form > button{
     margin: 5px;
 }
 
-#sign-up-form > button{
-    margin: 5px;
+.form-card{
+    width: 25rem;
 }
 
 section{
-
+    margin-top: 10px;
+    width: 80%;
 }
 
 .task-list{
@@ -135,8 +173,34 @@ section{
 }
 
 li{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem 1rem;
     margin: 1rem;
-    padding: 0.5rem;
+    width: 13rem;
+    border: 4px solid black;
+    border-radius: 1rem;
+
+}
+
+li > h4{
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 0rem 0rem 1rem 1rem;
+    border-right: 60px solid black;
+    margin-bottom: 5px;
+    padding:5px 0px;
+}
+
+li > h3{
+    text-align: center;
+    margin-bottom: 7px;
+} 
+
+li > p{
+    text-align: center;
+    font-size: 14px;
 }
 
 li:hover{

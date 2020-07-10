@@ -47,7 +47,7 @@ function showTaskDetails(taskData){
     errorMessage.textContent = ''
     const taskInfo = document.createElement('div')
     taskInfo.innerHTML = `
-        <h2>${taskData.data.attributes.title}</h2>
+        <h3>${taskData.data.attributes.title}</h3>
         <p>${taskData.data.attributes.description}</p>
         <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
     `
@@ -87,7 +87,6 @@ function offerHelp(event, task_id){
     .then(displayHelpMessage)
     .catch(displayTaskError)
 
-    createTask(taskInfo)
 }
 function stopHelp(event, taskData){
     event.stopPropagation()
