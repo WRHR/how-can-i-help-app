@@ -4,6 +4,7 @@ const baseURL = 'http://localhost:3000'
 const tasksURL = `${baseURL}/tasks/`
 
 function createEditForm(taskData){
+    event.stopPropagation()
     const hiddenTaskForm = document.querySelector('.new-task-form')
     const taskForm = document.createElement('form')
     const errorMessage = document.querySelector('#task-form-error-message')

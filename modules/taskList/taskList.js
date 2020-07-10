@@ -19,10 +19,11 @@ function createTask(task){
 
     const li = document.createElement('li')
     li.dataset.taskId = task.id
+    const helpersNeeded = calculateVolunteers(task)
     li.innerHTML = `
         <h4>${task.attributes.creator.data.attributes.name} needs help:</h4>
         <h3>${task.attributes.title}</h3>
-        <p>Needs ${task.attributes.volunteersNeeded - task.attributes.helpers.length} Helper!</p>
+        <p>${helpersNeeded}</p>
     `
 
     li.addEventListener('click', getTaskDetails)
@@ -85,6 +86,8 @@ function offerHelp(event, task_id){
     .then(parseJSON)
     .then(displayHelpMessage)
     .catch(displayTaskError)
+
+    createTask(taskInfo)
 }
 function stopHelp(event, taskData){
     event.stopPropagation()
@@ -145,6 +148,23 @@ function createEditButton(taskData){
         createEditForm(taskData)
     } )
     return editButton
+}
+
+function calculateVolunteers(task){
+    let helpersNeeded = task.attributes.volunteersNeeded - task.attributes.helpers.length
+
+    if(helpersNeeded > 1){
+        return `Needs ${helpersNeeded} more Volunteers!`
+    }else{
+        return `Need ${helpersNeeded} more Volunteer!`
+    }
+}
+
+function createDeleteButton(taskData){
+    const deleteButton = document.createElement('button')
+    editButton.addEventListener('click', ()=>{
+
+    })
 }
 
 export {createTaskList}
