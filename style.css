@@ -58,7 +58,7 @@ table {
     --modak-font:'Modak', cursive;
     --acme-font: 'Acme', sans-serif;
     --dark-color: hsl(120, 4%, 16%);
-    --grey-color: hsl(196, 19%, 64%);
+    --grey-color: hsl(198, 14%, 38%);
     --skyblue-color: hsl(211, 86%, 78%);
     --light-blue-color: hsl(211, 100%, 83%);
     --white-color: hsl(231, 100%, 97%);
@@ -66,7 +66,29 @@ table {
 body{
     font-family: var(--cabin-font);
     background: linear-gradient(var(--skyblue-color), var(--white-color));
+    overflow: hidden;
 }
+
+.svg1{
+    top: 85%;
+    left: 81%;
+    transform: scale(3) rotate(-6deg);
+    position: absolute;
+    z-index: -1;
+    height: 700px;
+    width: 700px;
+}
+
+.svg2{
+    transform: scale(3) rotate(111deg);
+    position: absolute;
+    z-index: -1;
+    height: 700px;
+    width: 700px;
+    top: 31%;
+    left: -67%;
+}
+
 h2{
     font-size: 3rem;
     font-family: var(--modak-font);
@@ -116,10 +138,11 @@ main{
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    background-color: grey;
-    padding: 3rem;
+    background-color: var(--grey-color);
+    padding: 2rem;
     border-radius: 2rem;
 }
+
 
 .new-task-form{
     position: absolute;
@@ -179,6 +202,7 @@ section{
     align-items: center;
 }
 
+
 li{
     display: flex;
     flex-direction: column;
@@ -223,3 +247,4 @@ li:hover{
 .hidden{ 
     display: none;
 }
+

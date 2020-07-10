@@ -7,8 +7,9 @@ const volunteersURL = `${baseURL}/volunteers/`
 
 const taskCard = document.querySelector('.task-card')
 const errorMessage = document.querySelector('#task-error-message')
+
+
 function createTaskList({data}){
-    console.log(data)
     const filteredData = data.filter(dataNode => dataNode.attributes.volunteersNeeded != dataNode.attributes.helpers.length)
     return filteredData.map(createTask)
 }
@@ -49,7 +50,10 @@ function showTaskDetails(taskData){
 
     errorMessage.textContent = ''
     const taskInfo = document.createElement('div')
+    const helpersNeeded = calculateVolunteers(taskData.data)
+    console.log(taskData)
     taskInfo.innerHTML = `
+        <p>${taskData.data.attributes.creator.data.attributes.name} ${helpersNeeded}</p>
         <h3>${taskData.data.attributes.title}</h3>
         <p>${taskData.data.attributes.description}</p>
         <p>Volunteers Needed: ${taskData.data.attributes.volunteersNeeded}</p>
@@ -156,9 +160,9 @@ function calculateVolunteers(task){
     let helpersNeeded = task.attributes.volunteersNeeded - task.attributes.helpers.length
 
     if(helpersNeeded > 1){
-        return `Needs ${helpersNeeded} more Volunteers!`
+        return `Needs ${helpersNeeded} more Volunteers`
     }else{
-        return `Need ${helpersNeeded} more Volunteer!`
+        return `Need ${helpersNeeded} more Volunteer`
     }
 }
 
