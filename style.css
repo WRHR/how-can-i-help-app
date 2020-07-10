@@ -116,9 +116,8 @@ nav{
 main{
     display: flex;
     justify-content: center;
-    height: 100%;
-    max-height: 100%;
-    overflow: auto;
+    height: 45rem;
+    overflow: scroll;
 }
 
 .login-card{
@@ -193,6 +192,7 @@ form > button{
 section{
     margin-top: 10px;
     width: 80%;
+    
 }
 
 .task-list{
